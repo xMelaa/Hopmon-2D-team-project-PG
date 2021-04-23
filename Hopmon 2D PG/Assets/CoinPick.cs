@@ -20,22 +20,24 @@ public class CoinPick : MonoBehaviour
             //powiększ coin o 1
             coin++;
             //zmien wczesniej wybrany TextMeshPro na Tekst + ilość punktów zamienionych na string        
-            textCoins.text = "Punkty: " + coin.ToString() + " / 10";
+            textCoins.text = coin.ToString() + " / 10";
             //TO BĘDZIE DO ZMIANY
             if(coin>=10 && coin<36)
             {
                 if(coin==10)
             gameObject.transform.position= new Vector3(28,2,0);
-               textCoins.text = "Punkty: " + (coin-10).ToString() + " / 26";
+               textCoins.text = (coin-10).ToString() + " / 26";
             }
             if(coin==36)
             {
-                gameObject.transform.position= new Vector3(28,2,0);
-               textCoins.text = "Punkty: " + (coin-36).ToString() + " / inf";
+                gameObject.transform.position= new Vector3(79,10,0);
+               textCoins.text = (coin-36).ToString() + " / TBC";
 
             }
-            //Odtwórz dźwięk coinSound w miejscu 0,0,0 z głośnościa volume
-            AudioSource.PlayClipAtPoint(coinSound, Vector3.zero, volume);
+            //tworzymy Vector3 z miejscem kolizji
+            Vector3 colPosition = collision.transform.position;
+            //Odtwórz dźwięk coinSound w miejscu kolizji
+            AudioSource.PlayClipAtPoint(coinSound, colPosition, volume);
             //Zniszcz obiekt
             Destroy(collision.gameObject);
         }

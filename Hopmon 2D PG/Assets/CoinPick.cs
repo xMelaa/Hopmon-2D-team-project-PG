@@ -20,12 +20,19 @@ public class CoinPick : MonoBehaviour
             //powiększ coin o 1
             coin++;
             //zmien wczesniej wybrany TextMeshPro na Tekst + ilość punktów zamienionych na string        
-            textCoins.text = "Punkty: " + coin.ToString();
+            textCoins.text = "Punkty: " + coin.ToString() + " / 10";
             //TO BĘDZIE DO ZMIANY
-            if(coin==2)
+            if(coin>=10 && coin<36)
             {
+                if(coin==10)
             gameObject.transform.position= new Vector3(28,2,0);
-               textCoins.text = "Punkty: " + (coin-2).ToString();
+               textCoins.text = "Punkty: " + (coin-10).ToString() + " / 26";
+            }
+            if(coin==36)
+            {
+                gameObject.transform.position= new Vector3(28,2,0);
+               textCoins.text = "Punkty: " + (coin-36).ToString() + " / inf";
+
             }
             //Odtwórz dźwięk coinSound w miejscu 0,0,0 z głośnościa volume
             AudioSource.PlayClipAtPoint(coinSound, Vector3.zero, volume);

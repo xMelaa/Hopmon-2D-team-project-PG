@@ -24,7 +24,7 @@ public class CoinPick : MonoBehaviour
             //TO BĘDZIE DO ZMIANY
             if(coin==2)
             {
-            gameObject.transform.position= new Vector3(35,-1,0);
+            gameObject.transform.position= new Vector3(28,2,0);
                textCoins.text = "Punkty: " + (coin-2).ToString();
             }
             //Odtwórz dźwięk coinSound w miejscu 0,0,0 z głośnościa volume

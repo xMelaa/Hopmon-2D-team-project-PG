@@ -5,32 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
-    public Rigidbody2D rb;
-    public Animator animator;
-    public GameObject pauseMenu;
     public bool isPaused;
-    private Vector2 moveDirection;
+    public GameObject pauseMenu;
+    public Animator animator;
+
+    public float moveSpeed = 5f;
+
+    public Rigidbody2D rb;
+    public Camera cam;
+
+    private Vector2 movement;
+    private Vector2 mousePos;
+    private Vector2 lookDir;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector2(moveX, moveY).normalized;
-        animator.SetFloat("Horizontal", moveDirection.x);
-        animator.SetFloat("Vertical", moveDirection.y);
-        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        //moveDirection = new Vector2(moveX, moveY).normalized;
+        //animator.SetFloat("Horizontal", lookDir.x);
+        //animator.SetFloat("Vertical", lookDir.y);
+        //animator.SetFloat("Speed", lookDir.sqrMagnitude);
 
         //reakcja na escape - włączenie/wyłączenie pauzy
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(isPaused){
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
                 pauseMenu.SetActive(false);
-                Time.timeScale = 1f; 
+                Time.timeScale = 1f;
                 isPaused = false;
             }
-            else {
+            else
+            {
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f; //zatrzymaj czas
                 isPaused = true;
@@ -38,12 +49,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void BackToMenu(){ //potrzebne do okna pauzy, skok do menu
+    public void BackToMenu()
+    { //potrzebne do okna pauzy, skok do menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        //rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+        lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = angle;
     }
 }

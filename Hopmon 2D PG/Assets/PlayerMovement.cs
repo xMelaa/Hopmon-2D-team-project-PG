@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
     public Animator animator;
-
+    public GameObject pauseMenu;
+    public bool isPaused;
     private Vector2 moveDirection;
 
     // Update is called once per frame
@@ -20,6 +22,24 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", moveDirection.x);
         animator.SetFloat("Vertical", moveDirection.y);
         animator.SetFloat("Speed", moveDirection.sqrMagnitude);
+
+        //reakcja na escape - włączenie/wyłączenie pauzy
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(isPaused){
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1f; 
+                isPaused = false;
+            }
+            else {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0f; //zatrzymaj czas
+                isPaused = true;
+            }
+        }
+    }
+
+    public void BackToMenu(){ //potrzebne do okna pauzy, skok do menu
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     void FixedUpdate()

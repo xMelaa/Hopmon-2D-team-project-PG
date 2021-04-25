@@ -19,9 +19,7 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDirection = new Vector2(moveX, moveY).normalized;
-        animator.SetFloat("Horizontal", moveDirection.x);
-        animator.SetFloat("Vertical", moveDirection.y);
-        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
+        Animate();
 
         //reakcja na escape - włączenie/wyłączenie pauzy
         if(Input.GetKeyDown(KeyCode.Escape)){
@@ -41,6 +39,15 @@ public class PlayerMovement : MonoBehaviour
     public void BackToMenu(){ //potrzebne do okna pauzy, skok do menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         Time.timeScale = 1f;
+    }
+
+    void Animate(){
+        if (moveDirection != Vector2.zero){ //warunek który sprawia ze postac zostaje w tym samym kierunku co szla
+            animator.SetFloat("Horizontal", moveDirection.x);
+            animator.SetFloat("Vertical", moveDirection.y);
+        }
+        
+        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
     }
 
     void FixedUpdate()

@@ -10341,7 +10341,7 @@ MonoBehaviour:
   isPaused: 0
   pauseMenu: {fileID: 1127284401}
   animator: {fileID: 1370409466}
-  moveSpeed: 10
+  moveSpeed: 6
   rb: {fileID: 1370409465}
   cam: {fileID: 1971620076}
 --- !u!50 &1370409465
@@ -15901,7 +15901,7 @@ Tilemap:
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 2147483649
   - first: {x: 48, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -17152,7 +17152,7 @@ Tilemap:
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 2147483649
   - first: {x: 90, y: 2, z: 0}
     second:
       serializedVersion: 2
@@ -18151,7 +18151,7 @@ Tilemap:
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 2147483649
   - first: {x: 48, y: 5, z: 0}
     second:
       serializedVersion: 2

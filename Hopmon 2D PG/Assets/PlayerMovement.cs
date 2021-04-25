@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Camera cam;
 
+    private Vector2 moveDirection;
     private Vector2 movement;
     private Vector2 mousePos;
     private Vector2 lookDir;
@@ -21,15 +22,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        //moveDirection = new Vector2(moveX, moveY).normalized;
-        //animator.SetFloat("Horizontal", lookDir.x);
-        //animator.SetFloat("Vertical", lookDir.y);
-        //animator.SetFloat("Speed", lookDir.sqrMagnitude);
+        moveDirection = new Vector2(moveX, moveY).normalized;
+        Animate();
 
         //reakcja na escape - włączenie/wyłączenie pauzy
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -49,6 +48,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void Animate(){
+        if (moveDirection != Vector2.zero){ //warunek który sprawia ze postac zostaje w tym samym kierunku co szla
+            animator.SetFloat("Horizontal", moveDirection.x);
+            animator.SetFloat("Vertical", moveDirection.y);
+        }
+        
+        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
+    }
+
+
+
     public void BackToMenu()
     { //potrzebne do okna pauzy, skok do menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
@@ -57,11 +67,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        //lookDir = mousePos - rb.position;
+        //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        //rb.rotation = angle;
     }
 }

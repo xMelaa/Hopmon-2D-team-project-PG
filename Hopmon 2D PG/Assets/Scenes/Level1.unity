@@ -10413,6 +10413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc2713462469064f949ddfb4f3fdae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleport: 0
   coinSound: {fileID: 8300000, guid: 46a30c2369e217c46a5e287445a6c526, type: 3}
   volume: 0.2
   textCoins: {fileID: 123975227}
@@ -10595,6 +10596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1370409464}
+  coinPick: {fileID: 1370409468}
   nextLvl: Level2
 --- !u!61 &1373813178
 BoxCollider2D:

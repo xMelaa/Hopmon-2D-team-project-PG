@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
     public PlayerMovement player;
+   public CoinPick coinPick;
     public string nextLvl;
 
     
@@ -13,14 +14,20 @@ public class Teleport : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerMovement> ();
+       coinPick = FindObjectOfType<CoinPick> ();
 
     }
 
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D CoTo)
     {
-        if(CoTo.name== "Player"){
+        if(CoTo.name== "Player" && coinPick.teleport){
+            Tel();
             SceneManager.LoadScene(nextLvl);
     }
+    }
+
+    IEnumerator Tel(){
+        yield return new WaitForSeconds(4); 
     }
 }

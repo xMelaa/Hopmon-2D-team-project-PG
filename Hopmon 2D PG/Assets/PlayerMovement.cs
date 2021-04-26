@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public bool isPaused;
+    
     public GameObject pauseMenu;
     public Animator animator;
 
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = new Vector2(moveX, moveY).normalized;
         Animate();
+        
+        
 
         //reakcja na escape - włączenie/wyłączenie pauzy
         if (Input.GetKeyDown(KeyCode.Escape))

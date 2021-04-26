@@ -10,7 +10,6 @@ public class Teleport : MonoBehaviour
     public string nextLvl;
 
     
-    // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerMovement> ();
@@ -19,15 +18,13 @@ public class Teleport : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnTriggerEnter2D(Collider2D CoTo)
+    void OnTriggerEnter2D(Collider2D CoTo) //jesli wejdzie na pole
     {
-        if(CoTo.name== "Player" && coinPick.teleport){
-            Tel();
-            SceneManager.LoadScene(nextLvl);
+        if(CoTo.name== "Player" && coinPick.teleport){ //jesli colider to player i teleport jest true           
+            SceneManager.LoadScene(nextLvl); //przenies na nastepna scene
+            
     }
     }
 
-    IEnumerator Tel(){
-        yield return new WaitForSeconds(4); 
-    }
+    
 }

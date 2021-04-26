@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 public class CoinPick : MonoBehaviour
 {
+        
+    public bool teleport = false;    
         //Aktualna ilość punktów
     private int coin = 0;
     private int coinAct = 0;
@@ -29,9 +31,11 @@ public class CoinPick : MonoBehaviour
                     textCoins.text = coin.ToString() + " / " + coin1LVL;
                 }
                     //TO BĘDZIE DO ZMIANY
+                    
                 if(coinAct >= coin1LVL && coinAct < coin1LVL+coin2LVL){
-                    if(coin==coin1LVL){ //jeśli osiągniemy ilość punktów do przejścia na kolejny poziom to teleportuj bohatera
-                        gameObject.transform.position= new Vector3(28,2,0);
+                    if(coin==coin1LVL){ //jeśli osiągniemy ilość punktów do przejścia na kolejny poziom to odblokuj teleport /teleportuj bohatera/
+                        teleport = true;
+                        //gameObject.transform.position= new Vector3(28,2,0);
                     }
                     textCoins.text = (coin-coin1LVL-1).ToString() + " / " + coin2LVL;
                 }
@@ -50,7 +54,7 @@ public class CoinPick : MonoBehaviour
                 Destroy(collision.gameObject);
             }
     
-        }
+         }
 
 
 

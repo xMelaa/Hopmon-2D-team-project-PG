@@ -31,8 +31,9 @@ public class CoinPick : MonoBehaviour
                     textCoins.text = coin.ToString() + " / " + coin1LVL;
                 }
                     //TO BĘDZIE DO ZMIANY
+                    
                 if(coinAct >= coin1LVL && coinAct < coin1LVL+coin2LVL){
-                    if(coin==coin1LVL){ //jeśli osiągniemy ilość punktów do przejścia na kolejny poziom to teleportuj bohatera
+                    if(coin==coin1LVL){ //jeśli osiągniemy ilość punktów do przejścia na kolejny poziom to odblokuj teleport /teleportuj bohatera/
                         teleport = true;
                         //gameObject.transform.position= new Vector3(28,2,0);
                     }

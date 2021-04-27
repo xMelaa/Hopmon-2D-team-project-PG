@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Camera cam;
 
+    public float energia = 1;
     private Vector2 moveDirection;
     private Vector2 movement;
     private Vector2 mousePos;
@@ -61,7 +62,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+    public void energy(int wartosc){
+        energia = energia + wartosc; //dodawanie wartosci do energii
+    }
+    
     public void BackToMenu()
     { //potrzebne do okna pauzy, skok do menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

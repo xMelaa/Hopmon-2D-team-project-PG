@@ -10635,6 +10635,7 @@ MonoBehaviour:
   moveSpeed: 6
   rb: {fileID: 1370409465}
   cam: {fileID: 1971620076}
+  energia: 1
 --- !u!50 &1370409465
 Rigidbody2D:
   serializedVersion: 4

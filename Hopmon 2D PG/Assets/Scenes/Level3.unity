@@ -8736,7 +8736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 690425502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10345,7 +10345,7 @@ GameObject:
   - component: {fileID: 1370409469}
   - component: {fileID: 1370409470}
   - component: {fileID: 1370409471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -10435,6 +10435,7 @@ MonoBehaviour:
   moveSpeed: 6
   rb: {fileID: 1370409465}
   cam: {fileID: 1971620076}
+  energia: 1
 --- !u!50 &1370409465
 Rigidbody2D:
   serializedVersion: 4
@@ -11776,6 +11777,7 @@ MonoBehaviour:
   - {fileID: 20184157}
   - {fileID: 364764359}
   - {fileID: 112127591}
+  player: {fileID: 0}
 --- !u!212 &1732378634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11850,7 +11852,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

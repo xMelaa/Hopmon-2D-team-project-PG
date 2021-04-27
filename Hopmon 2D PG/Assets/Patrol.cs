@@ -7,13 +7,16 @@ public class Patrol : MonoBehaviour
     public float speed = 2f; //predkosc chodzenia do ustawienia w inspektorze
     public Transform[] spots; //tablica waypointów w których enemy chodzi od jednego do drugiego
     private int spotIndex = 0; //index waypointu od ktorego enemy idzie   
+    public PlayerMovement player; //bedziemy korzystac z innego pliku cs
     
     void Start(){        
         transform.position = spots[spotIndex].transform.position; //ustaw pozycje enemy na pozycji 1. waypointu
+        player = FindObjectOfType<PlayerMovement> ();
     }
 
     // Update is called once per frame
     void Update() {
+        
         Move();
     }
 
@@ -29,6 +32,12 @@ public class Patrol : MonoBehaviour
             spotIndex=0; //wroc do indexu 0
         }
         
+    }
+
+    void OnTriggerEnter2D(Collider2D col){ // jesli trigger jest aktywowany
+        if(col.name == "Player"){ // jesli colizja jest z Playerem
+            player.energy (-1); // wywolaj funkcje dodajaca energie z wartoscia -1 (odejmuje)
+        }
     }
 }
 

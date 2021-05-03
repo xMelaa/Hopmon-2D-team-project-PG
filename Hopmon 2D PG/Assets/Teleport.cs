@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
     public PlayerMovement player;
-   public CoinPick coinPick;
+    public CoinPick coinPick;
     public string nextLvl;
 
     
@@ -21,7 +21,8 @@ public class Teleport : MonoBehaviour
     void OnTriggerEnter2D(Collider2D CoTo) //jesli wejdzie na pole
     {
         if(CoTo.name== "Player" && coinPick.teleport){ //jesli colider to player i teleport jest true           
-            SceneManager.LoadScene(nextLvl); //przenies na nastepna scene
+            //SceneManager.LoadScene(nextLvl); //przenies na nastepna scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             
     }
     }

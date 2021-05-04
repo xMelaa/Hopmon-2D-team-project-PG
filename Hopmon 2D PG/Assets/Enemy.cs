@@ -8,13 +8,13 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 3f;
     private Rigidbody2D rb;
     private Vector2 movement;
-    //public PlayerMovement pl; //bedziemy korzystac z innego pliku cs
+    public PlayerMovement pl; //bedziemy korzystac z innego pliku cs
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        //pl = FindObjectOfType<PlayerMovement> ();
+        pl = FindObjectOfType<PlayerMovement> ();
     }
 
     // Update is called once per frame
@@ -35,9 +35,21 @@ public class Enemy : MonoBehaviour
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
-    /*void OnTriggerEnter2D(Collider2D col){ // jesli trigger jest aktywowany
+private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        //Destroy(effect, 5f);
+
+        if (collision.gameObject.name.Contains("Player"))
+        {
+            pl.energy (-1);
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D col){ // jesli trigger jest aktywowany
         if(col.name == "Player"){ // jesli colizja jest z Playerem
             pl.energy (-1); // wywolaj funkcje dodajaca energie z wartoscia -1 (odejmuje)
         }
-    }*/
+    }
 }

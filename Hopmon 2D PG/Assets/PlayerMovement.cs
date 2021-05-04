@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isPaused;
     
     public GameObject pauseMenu;
+    public GameObject deathMenu;
     public Animator animator;
 
     public float moveSpeed = 5f;
@@ -24,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))  
+    SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -50,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
                 isPaused = true;
             }
         }
+        if(energia < 1)
+        {
+            deathMenu.SetActive(true);
+        }
     }
 
     void Animate(){
@@ -64,12 +71,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void energy(int wartosc){
         energia = energia + wartosc; //dodawanie wartosci do energii
+        Debug.Log("x");
     }
     
     public void BackToMenu()
     { //potrzebne do okna pauzy, skok do menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         Time.timeScale = 1f;
+    }
+      public void ResetLevel()
+    { //potrzebne do okna pauzy, skok do menu
+         SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
     }
 
     private void FixedUpdate()

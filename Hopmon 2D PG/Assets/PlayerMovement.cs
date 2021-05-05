@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        Time.timeScale = 1f;
         if (Input.GetKeyDown(KeyCode.R))  
     SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         if(energia < 1)
         {
             deathMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
@@ -76,8 +78,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void BackToMenu()
     { //potrzebne do okna pauzy, skok do menu
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
       public void ResetLevel()
     { //potrzebne do okna pauzy, skok do menu

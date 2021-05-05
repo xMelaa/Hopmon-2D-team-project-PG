@@ -37,7 +37,7 @@ public class CoinPick : MonoBehaviour
                         coinLVL = 56;
                         break;
                     case 4:
-                        coinLVL = 24;
+                        coinLVL = 26;
                         break;
                     case 5:
                         coinLVL = 42;

@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
         //Destroy(effect, 5f);
         Destroy(gameObject);
 
-        if (collision.gameObject.name.Contains("Enemy"))
+        if (collision.gameObject.name.Contains("Fence") ^ collision.gameObject.name.Contains("Enemy") )
         {
             Destroy(collision.gameObject);
         }

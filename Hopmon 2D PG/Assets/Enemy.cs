@@ -10,15 +10,15 @@ public class Enemy : MonoBehaviour
     private Vector2 movement;
     public PlayerMovement pl; //bedziemy korzystac z innego pliku cs
 
-    // Start is called before the first frame update
-    void Start()
+    // wywolane na samym poczatku
+    private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        pl = FindObjectOfType<PlayerMovement> ();
+        pl = FindObjectOfType<PlayerMovement>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update przy kazdej klatce (tutaj na bierząco są wykonywane obliczenia potrzebne do ustalenia nowych parametrów ruchu)
+    private void Update()
     {
         Vector3 direction = player.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -26,30 +26,31 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
         movement = direction;
     }
+
     private void FixedUpdate()
     {
+        // Tutaj wykonywana jest funkcja odpowiedzialna za ciągły ruch przeciwników
         moveCharacter(movement);
     }
-    void moveCharacter(Vector2 direction)
+
+    private void moveCharacter(Vector2 direction)
     {
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
-private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        //Destroy(effect, 5f);
-
         if (collision.gameObject.name.Contains("Player"))
         {
-            pl.energy (-1);
+            pl.energy(-1);
         }
     }
 
-
-    void OnTriggerEnter2D(Collider2D col){ // jesli trigger jest aktywowany
-        if(col.name == "Player"){ // jesli colizja jest z Playerem
-            pl.energy (-1); // wywolaj funkcje dodajaca energie z wartoscia -1 (odejmuje)
+    private void OnTriggerEnter2D(Collider2D col)
+    { // jesli trigger jest aktywowany
+        if (col.name == "Player")
+        { // jesli kolizja jest z Playerem
+            pl.energy(-1); // wywolaj funkcje dodajaca energie z wartoscia -1 (odejmuje)
         }
     }
 }
